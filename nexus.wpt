@@ -1,0 +1,40 @@
+logData 0
+
+// Debug Page
+navigate	https://qa2.moolb.com/app/nexus/debug
+
+// Select Sponsor - Bloom Health
+selectValue	id=sponsor_select 0
+
+// Select Employer - C
+selectValue	id=nexus_employer_select 0
+
+//Select Network - Bloom
+selectValue	id=network_select 0
+
+// Select Client - Dev Do Not TOuch
+selectValue	id=client_select 4
+
+// Select Employee - Bruce Banner
+selectValue	id=employee_select 6
+
+// Create Session
+clickAndWait	id=create_session_button
+
+logData 1
+
+// Home Page
+// Start Event
+submitForm action=/app/nexus/home/chooseEvent
+clickAndWait	id=Next-button
+
+// You Page
+clickAndWait	id=Next-button
+
+// Path Page
+clickAndWait href=/app/nexus/medical/index
+
+logData 2
+
+// Medical Page
+clickAndWait	id=Next-button
