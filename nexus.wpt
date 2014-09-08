@@ -1,40 +1,26 @@
-logData 0
+logData	0
 
 // Debug Page
 navigate	https://qa2.moolb.com/app/nexus/debug
 
-// Select Sponsor - Bloom Health
-selectValue	id=sponsor_select 0
+execAndWait	!function(){function e(e,n){$(e).val(n),$(e).trigger("change"),console.log("Setting ["+e+"] to ["+n+"]")}function n(e){return function(){console.log("Querying for ["+e+"]...");var n=$(e);return n&&n.length>1?!0:!1}}function t(e){return function(){return console.log("Querying for ["+e+"]..."),1===$(e).length}}function o(e){var n,t=new $.Deferred;return n=setInterval(function(){e()&&(clearInterval(n),t.resolve(n))},1e3),t.promise()}$.when(o(n("#sponsor_select option"))).then(function(){return e("#sponsor_select","0"),o(n("#nexus_employer_select option"))}).then(function(){return e("#nexus_employer_select","4"),o(n("#network_select option"))}).then(function(){return e("#network_select","0"),o(n("#client_select option"))}).then(function(){return e("#client_select","4"),o(n("#employee_select option"))}).then(function(){return e("#employee_select","6"),o(t("#create_session_button"))}).then(function(){$("#create_session_button").click()})}();
 
-// Select Employer - C
-selectValue	id=nexus_employer_select 0
+// Home Page
+execAndWait	!function(){function n(n){return function(){return console.log("Querying for ["+n+"]..."),1===$(n).length}}function e(n){var e,o=new $.Deferred;return e=setInterval(function(){n()&&(clearInterval(e),o.resolve(e))},1e3),o.promise()}$.when(e(n('form[action="/app/nexus/home/chooseEvent"]'))).then(function(){$('form[action="/app/nexus/home/chooseEvent"]').submit()})}();
 
-//Select Network - Bloom
-selectValue	id=network_select 0
+// Coverage Page
+execAndWait	!function(){function n(n){return function(){return console.log("Querying for ["+n+"]..."),1===$(n).length}}function e(n){var e,t=new $.Deferred;return e=setInterval(function(){n()&&(clearInterval(e),t.resolve(e))},1e3),t.promise()}$.when(e(n("#Next-button"))).then(function(){$("#Next-button").click()})}();
 
-// Select Client - Dev Do Not TOuch
-selectValue	id=client_select 4
+// You Page
+execAndWait	!function(){function n(n){return function(){return console.log("Querying for ["+n+"]..."),1===$(n).length}}function e(n){var e,t=new $.Deferred;return e=setInterval(function(){n()&&(clearInterval(e),t.resolve(e))},1e3),t.promise()}$.when(e(n("#Next-button"))).then(function(){$("#Next-button").click()})}();
 
-// Select Employee - Bruce Banner
-selectValue	id=employee_select 6
+// Path Page
+execAndWait	!function(){var e=document.createElement("SCRIPT");e.src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",e.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(e);var n=function(e){window.jQuery?e(jQuery):window.setTimeout(function(){n(e)},100)};n(function(e){!function(){function n(n){return function(){return console.log("Querying for ["+n+"]..."),1===e(n).length}}function t(n){var t,o=new e.Deferred;return t=setInterval(function(){n()&&(clearInterval(t),console.log("Resolving..."),o.resolve(t))},1e3),o.promise()}e.when(t(n('a[href="/app/nexus/medical/index"]'))).then(function(){e('a[href="/app/nexus/medical/index"]')[0].click()})}()})}();
 
-// Create Session
-clickAndWait	id=create_session_button
+// Medical Page
+execAndWait	!function(){function n(n){return function(){console.log("Querying for ["+n+"]...");var e=$(n);return e&&e.length>1?!0:!1}}function e(n){return function(){return console.log("Querying for ["+n+"]..."),1===$(n).length}}function t(n){var e,t=new $.Deferred;return e=setInterval(function(){n()&&(clearInterval(e),t.resolve())},1e3),t.promise()}$.when(t(n(".medical-plan-elect-button"))).then(function(){var n=$(".medical-plan-elect-button").get(1);return"Deselect"!==n.text&&n.click(),t(e("#Next-button"))}).then(function(){$("#Next-button").click()})}();
 
 logData 1
 
-// Home Page
-// Start Event
-submitForm action=/app/nexus/home/chooseEvent
-clickAndWait	id=Next-button
-
-// You Page
-clickAndWait	id=Next-button
-
-// Path Page
-clickAndWait href=/app/nexus/medical/index
-
-logData 2
-
-// Medical Page
-clickAndWait	id=Next-button
+// Dental Page
+navigate	https://qa2.moolb.com/app/nexus/dental/index
