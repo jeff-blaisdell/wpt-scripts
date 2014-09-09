@@ -1,0 +1,27 @@
+logData	0
+
+// Load Debug Page
+navigate	https://qa2.moolb.com/app/nexus/debug
+
+// Debug Page
+execAndWait	${debug-page}
+
+// Home Page
+execAndWait	${home-page}
+
+// Coverage Page
+execAndWait	${coverage-page}
+
+// You Page
+execAndWait	${you-page}
+
+// Path Page
+execAndWait	${path-page}
+
+// Medical Page
+execAndWait	${medical-page}
+
+logData 1
+
+// Dental Page
+navigate	https://qa2.moolb.com/app/nexus/dental/index

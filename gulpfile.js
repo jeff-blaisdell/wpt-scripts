@@ -1,21 +1,3 @@
-/**
- *
- *  Web Starter Kit
- *  Copyright 2014 Google Inc. All rights reserved.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License
- *
- */
 
 'use strict';
 
@@ -26,7 +8,21 @@ var rimraf = require('rimraf');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed = require('psi');
+var fs = require('fs');
 var reload = browserSync.reload;
+
+var scripts = {};
+var replaceVal = function(val) {
+	var match = val.match(/\$\{(.*)\}/);
+	var fileName = match[1];
+	if (!scripts[fileName]) {
+		var filePath = 'dist/' + fileName + '.js';
+		var script = fs.readFileSync(filePath);
+		scripts[fileName] = script;
+	}
+
+	return scripts[fileName];
+};
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -43,6 +39,12 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('pages', function () {
+  return gulp.src('scripts/**/*.wpt')
+    .pipe($.replace(/\$\{.*\}/g, replaceVal))
+    .pipe(gulp.dest('dist'));
+});
+
 // Clean Output Directory
 gulp.task('clean', function (cb) {
   rimraf('dist', rimraf.bind({}, '.tmp', cb));
@@ -51,6 +53,6 @@ gulp.task('clean', function (cb) {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('jshint', 'scripts', cb);
+  runSequence('jshint', 'scripts', 'pages', cb);
 });
 
