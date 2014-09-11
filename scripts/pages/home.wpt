@@ -1,0 +1,12 @@
+logData	0
+
+// Load Debug Page
+navigate	https://qa2.moolb.com/app/nexus/debug
+
+// Debug Page
+execAndWait	${debug-page}
+
+logData 1
+
+// Home Page
+navigate	https://qa2.moolb.com/app/nexus/home/index

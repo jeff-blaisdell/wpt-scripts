@@ -21,7 +21,7 @@
 		$(selector).val(value);
 		$(selector).trigger('change');
 		console.log('Setting [' + selector + '] to [' + value + ']');
-	};
+	}
 
 	function querySelect(selector) {
 		return function() {
@@ -31,15 +31,15 @@
 				return true;
 			}
 			return false;
-		}
-	};
+		};
+	}
 
 	function queryElement(selector) {
 		return function() {
 			console.log('Querying for [' + selector + ']...');
 			return $(selector).length === 1;
-		}
-	};
+		};
+	}
 
 	function wait(queryFn) {
 		var intervalId;
@@ -54,7 +54,7 @@
 		}, 1000);
 
 		return deferred.promise();
-	};
+	}
 
 	$.when(wait(queryElement('a[href="/app/nexus/medical/index"]')))
 		.then(function() {
