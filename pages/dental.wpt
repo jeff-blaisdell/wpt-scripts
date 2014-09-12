@@ -21,6 +21,7 @@ execAndWait	${path-page}
 // Medical Page
 execAndWait	${medical-page}
 
+setActivityTimeout	30000
 logData 1
 
 // Dental Page

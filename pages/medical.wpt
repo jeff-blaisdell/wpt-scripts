@@ -18,6 +18,7 @@ execAndWait	${you-page}
 // Path Page
 execAndWait	${path-page}
 
+setActivityTimeout	30000
 logData 1
 
 // Medical Page

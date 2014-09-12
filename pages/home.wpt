@@ -6,6 +6,7 @@ navigate	https://qa2.moolb.com/app/nexus/debug
 // Debug Page
 execAndWait	${debug-page}
 
+setActivityTimeout	30000
 logData 1
 
 // Home Page
